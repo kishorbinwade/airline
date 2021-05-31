@@ -1,0 +1,117 @@
+G:\Airline>python manage.py startapp flights
+
+G:\Airline>code
+
+G:\Airline>python manage.py makemigrations
+Migrations for 'flights':
+  flights\migrations\0001_initial.py
+    - Create model Airport
+    - Create model Flight
+
+G:\Airline>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, flights, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying flights.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+G:\Airline>python manage.py shell
+Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  6 2021, 13:40:21) [MSC v.1928 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.22.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from flight.models import *
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+<ipython-input-1-dca7dc2f9761> in <module>
+----> 1 from flight.models import *
+
+ModuleNotFoundError: No module named 'flight'
+
+In [2]: from flights.models import *
+
+In [3]: pun=Airport(code="PUN", city="PUNE")
+
+In [4]: pun.save()
+
+In [5]: mum=Airport(code="MUM",city="MUMBAI")
+
+In [6]: mum.save()
+
+In [7]: deu=Airport(code="DEL",city="Deli")
+
+In [8]: del.save()
+  File "<ipython-input-8-60e6ed88cd69>", line 1
+    del.save()
+       ^
+SyntaxError: invalid syntax
+
+
+In [9]: deu.save()
+
+In [10]: f=Flight(origin=pun,destination=mum,duration=120)
+
+In [11]: f.save()
+
+In [12]: f
+Out[12]: <Flight: 1:PUNE PUN To MUMBAI MUM>
+
+In [13]: flight_10=Flight(origin=pun,destination=mum,duration=120)
+
+In [14]: flight_10
+Out[14]: <Flight: None:PUNE PUN To MUMBAI MUM>
+
+In [15]: flight_10.save()
+
+In [16]: flight_10
+Out[16]: <Flight: 2:PUNE PUN To MUMBAI MUM>
+
+In [17]: f.origin
+Out[17]: <Airport: PUNE PUN>
+
+In [18]: f.origin.city
+Out[18]: 'PUNE'
+***********************************************************************************************************
+In [1]: from flights.models import *
+
+In [2]: pun=Airport(code="PUN", city="PUNE")
+
+In [3]: pun.save()
+
+In [4]: mum=Airport(code="MUM",city="MUMBAI")
+
+In [5]: mum.save()^M
+   ...:
+
+In [6]: mum.save()
+
+In [7]: deu=Airport(code="DEL",city="Deli")
+
+In [8]: deu.save()
+
+In [9]: Jet_airways=Flight(origin=mum,destination=deu,duration=420)
+
+
+In [10]: Jet_airways.save()
+In [12]: Jet_airways
+Out[12]: <Flight: 6:MUMBAI MUM To Deli DEL Time 420>
+In [13]:deu.Arrivals.all()
+Out[20]: <QuerySet [<Flight: 6:MUMBAI MUM To Deli DEL Time 420>]>
+In [14]:Jet_airways.objects.all()
